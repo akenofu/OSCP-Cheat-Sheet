@@ -1,4 +1,7 @@
 ENUMERATION
+    
+    All around scanner
+       • python3 autorecon.py $ip -v
 
     Host Discovery
        •  nmap -sn  10.11.1.1-254 -vv -oA hosts
@@ -12,9 +15,9 @@ ENUMERATION
 PORT
 
     Port Scanning & Service Detection
-       • unicornscan -mT -I 10.11.1.252:a -v 
-       • unicornscan -mU -I 10.11.1.252:p -v 
-        •nmap -sC -sV -Pn -oA  -vv standard_tcp $ip
+        • unicornscan -mT -I 10.11.1.252:a -v 
+        • unicornscan -mU -I 10.11.1.252:p -v 
+        • nmap -sC -sV -Pn -oA  -vv standard_tcp $ip
         • nmap -sC -sV -sU -Pn -oA  -vv standard_udp $ip
         • nmap -p -sU -sT -Pn 0-65535 -vv -oN all_ports $ip 
         • unicornscan -mU -I 192.168.24.53:a -v -l unicorn_full_udp.txt ;  unicornscan -mT -I 192.168.24.53:a -v -l unicorn_full_tcp.txt
