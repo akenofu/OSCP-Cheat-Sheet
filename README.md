@@ -126,7 +126,7 @@ MANUAL HTTP SCANS
     curl -s http://$ip/robots.txt
 
     Burp
-       •  get params
+       • get params
        • post params
        • cookies
        • user agents
@@ -174,7 +174,9 @@ MANUAL HTTP SCANS
        •  /var/log/dmessage
        •  /var/mail/root
        •  /var/spool/cron/crontabs/root
-
+       •  /etc/sysconfig/iptables   
+       •  /etc/sysconfig/ip6tables
+       
     LFI Windows Files:
        •  %SYSTEMROOT%\repair\system
        •  %SYSTEMROOT%\repair\SAM
@@ -183,6 +185,7 @@ MANUAL HTTP SCANS
        •  %SYSTEMDRIVE%\boot.ini
        •  %WINDIR%\Panther\sysprep.inf
        •  %WINDIR%\system32\config\AppEvent.Evt
+       •  c:\windows\system32\drivers\etc\hosts
 
 
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -219,9 +222,9 @@ RPC
              ▪ enumdomusers
              ▪ enumprivs
              ▪ enumalsgroups domain 
-             ▪  lookupnames administrators
+             ▪ lookupnames administrators
              ▪ querydominfo 
-             ▪  enumdomusers 
+             ▪ enumdomusers 
              ▪ queryuser john
          
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -287,12 +290,12 @@ SMB&NETBIOS
 SNMP
 
     Enumeration Tools
-       •  Onesixtyone – c <community list file> -I <ip-address>
+       • Onesixtyone – c <community list file> -I <ip-address>
        • Snmpwalk -c <community string> -v<version> $ip 1.3.6.1.2.1.25.4.2.1.2
-       •  snmp-check $ip
+       • snmp-check $ip
 
     Default Community Names:
-       •  public, private, cisco, manager
+       • public, private, cisco, manager
 
     Enumerate MIB:
        •  1.3.6.1.2.1.25.1.6.0 System Processes
@@ -319,6 +322,14 @@ DOMAIN
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
+ACTIVE DIRECTORY/LDAP
+
+    ldapsearch:
+    --Look for anonymous bind
+       •  ldapsearch -x -b "dc=megabank,dc=local" "*" -h $ip
+
+
+-------------------------------------------------------------------------------------------------------------------------------------
 
 FILE TRANSFER
 
