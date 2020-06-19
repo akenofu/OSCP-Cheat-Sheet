@@ -5,8 +5,7 @@ WINDOWS<br/>
   • SeatBelt<br/>
   • Mssql<br/>
       ▪ PowerUpSQL<br/>
-      
- <br/><br/><br/>     
+<br/> 
 LINUX<br/>
   • linPEAS<br/>
   • linenum<br/>
