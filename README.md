@@ -1,3 +1,4 @@
+
 ENUMERATION
     
     All around scanner
@@ -247,6 +248,8 @@ POP3
 -------------------------------------------------------------------------------------------------------------------------------------
 
 SMB&NETBIOS
+ 
+
     Over All scan
        •  enum4linux -a $ip
     
@@ -416,7 +419,9 @@ SHELLS
 -------------------------------------------------------------------------------------------------------------------------------------
 
 PSSWD CRACKING
-      • Look for the hash in online databases
+  
+
+    • Look for the hash in online databases
 
     Hashcat:
        • Find mode in hashcat
@@ -427,19 +432,19 @@ PSSWD CRACKING
        •  john files --wordlist=/usr/share/wordlists/rockyou.txt
 
 
-PSSWD Mutation
-    Hashcat
-       • hashcat -m 0 bfield.hash  /usr/share/wordlists/rockyou.txt -r rules
+    PSSWD Mutation
+        Hashcat
+           • hashcat -m 0 bfield.hash  /usr/share/wordlists/rockyou.txt -r rules
 
 
-PSSWD BruteForcing
-    Crackmapexec
-       • Enumerate password policy
-             ▪ crackmapexec 192.168.215.104 -u 'Administrator' -p 'PASS --pass-pol
-       • Bruteforce SMB
-             ▪ crackmapexec smb 10.10.10.172 -u /root/users.lst -p /root/passwords.lst
-       • Bruteforce winrm
-             ▪ crackmapexec winrm 10.10.10.172 -u /root/users.lst -p /root/passwords.lst
+    PSSWD BruteForcing
+        Crackmapexec
+           • Enumerate password policy
+                 ▪ crackmapexec 192.168.215.104 -u 'Administrator' -p 'PASS --pass-pol
+           • Bruteforce SMB
+                 ▪ crackmapexec smb 10.10.10.172 -u /root/users.lst -p /root/passwords.lst
+           • Bruteforce winrm
+                 ▪ crackmapexec winrm 10.10.10.172 -u /root/users.lst -p /root/passwords.lst
              
     Hydra
        •  Hydra brute force against SNMP
@@ -637,6 +642,5 @@ PIVOTING
              ▪ socks4a module
                   → set srv port to ( no need to set host)
              ▪  set proxychains.conf to 127.0.0.1 1080
-
 
 
