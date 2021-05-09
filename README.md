@@ -1,3 +1,7 @@
+# For a more up to date guide,cheatsheet and checklist, check out my frequently updated repo 
+**[HackAllTheThings](https://github.com/akenofu/HackAllTheThings)**
+
+***
 # Cheat Sheet
 
 ## ENUMERATION
