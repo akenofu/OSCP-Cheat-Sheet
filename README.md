@@ -1,5 +1,5 @@
-# For a more up to date guide,cheatsheet and checklist, check out my frequently updated repo 
-**[HackAllTheThings](https://github.com/akenofu/HackAllTheThings)**
+# For a more up to Cheatsheets, References and notes on various red teaming/pentesting topics. Check out my frequently updated repo 
+## [HackAllTheThings](https://github.com/akenofu/HackAllTheThings)
 
 ***
 # Cheat Sheet
