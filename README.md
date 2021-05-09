@@ -1,4 +1,4 @@
-# For a more up to Cheatsheets, References and notes on various red teaming/pentesting topics. Check out my frequently updated repo 
+# For a more up to date Cheatsheets, References and notes on various red teaming/pentesting topics. Check out my frequently updated repo 
 # [HackAllTheThings](https://github.com/akenofu/HackAllTheThings)
 
 ***
